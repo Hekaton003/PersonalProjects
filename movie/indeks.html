@@ -1,0 +1,376 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>MovieFlex</title>
+
+    <script src="action.js"></script>
+    <script src="adventure.js"></script>
+    <script src="comedy.js"></script>
+    <script src="horror.js"></script>
+    <script src="History.js"></script>
+    <script src="Romance.js"></script>
+    <script src="Thriller.js"></script>
+    <style>
+        body{
+            font-family: "Baskerville Old Face",sans-serif;
+            font-size: 25px;
+            background-color: lightgrey;
+        }
+        nav{
+            width: 100%;
+            height: 120px;
+            background-color: lightslategray;
+            display: inline-block;
+            border-radius: 10px;
+        }
+        nav>img{
+            display: inline-block;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+        nav>h1{
+            display: inline-block;
+        }
+        #search{
+            width: 30%;
+            height: 30px;
+            margin-left: 17%;
+            padding: 1px;
+            margin-right: 5%;
+        }
+        nav>ul li{
+          display: inline-block;
+            margin-right: 10px;
+            margin-left: 10px;
+            vertical-align: top;
+        }
+        nav>ul{
+            display: inline-block;
+            list-style: none;
+        }
+        section{
+            display: inline-flex;
+            align-items: center;
+        }
+        #carosel{
+            list-style: none;
+            padding-left:0;
+        }
+        aside{
+            display: inline-block;
+            margin-left: 2%;
+            vertical-align: top;
+        }
+        aside ul>li{
+            list-style:-moz-ethiopic-numeric;
+            margin-bottom: 15px;
+        }
+        aside ul>li:hover{
+            color: #c77405;
+            cursor: pointer;
+        }
+        .mblock{
+            width: 250px;
+            height: 400px;
+            font-size: 15px;
+            background: radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50) 0%, rgb(0, 0, 0) 99.4%);
+            color: white;
+            padding: 10px;
+            margin-right: 15px;
+            display: inline-block;
+            margin-bottom: 15px;
+            vertical-align: top;
+            cursor: pointer;
+        }
+        .mblock img{
+            width: 250px;
+            height: 250px;
+            border-bottom: 1px white solid;
+        }
+        #container{
+            padding-left: 20px;
+        }
+        #subnav{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #subnav>li{
+            display: inline-block;
+            border-right: 1px solid grey;
+            padding-right: 10px;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+        #subnav>li:last-of-type{
+            border-right: none;
+        }
+        footer{
+            background:radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50) 0%, rgb(0, 0, 0) 99.4%) ;
+            height: 40px;
+            color: white;
+            text-align: center;
+            font-size: 16px;
+            vertical-align: center;
+        }
+        footer>p{
+            margin-top: 20px;
+            padding-top: 10px;
+        }
+        #dialog{
+            display: none;
+        }
+        #dialog>img{
+            display: inline-block;
+            border-radius:10px ;
+            float: right;
+            margin-right: 110px;
+
+        }
+        #dialog>section{
+            display: inline-block;
+            width: 900px;
+            margin-left: 30px;
+            vertical-align:top;
+        }
+        #check{
+            position: relative;
+            left: -114px;
+            top:7px;
+        }
+    </style>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+</head>
+<body>
+<nav>
+    <img src="https://cdn-icons-png.flaticon.com/512/1038/1038100.png" alt="pic" width="50" height="50">
+    <h1>MovieFlex</h1>
+    <input id="search" type="text" placeholder="Insert a movie title"><button id="check"><img src="https://static.vecteezy.com/system/resources/previews/000/631/501/original/search-icon-symbol-sign-vector.jpg" width="25px" height="26px"></button>
+    <ul>
+      <li><img src="https://cdn-icons-png.flaticon.com/512/4494/4494475.png" alt="pic" width="40px" height="40px"/></li>
+      <li><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="pic" width="40px" height="40px"/></li>
+      <li><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="pic" width="40px" height="40px"/></li>
+      <li><img src="https://cdn-icons-png.flaticon.com/512/3116/3116491.png"  alt="pic" width="40px" height="40px"/></li>
+    </ul>
+</nav>
+<h2 style="margin-left: 10px">What do you want to watch?</h2>
+<section>
+    <button id="to_left"><img src="https://cdn-icons-png.flaticon.com/512/271/271220.png" alt="pic3" width="20" height="30"></button>
+    <ul id="carosel">
+        <li id="1"><img src="sliki/1.jpg" width="780" height="440"></li>
+    </ul>
+    <button id="to_right"><img src="https://cdn-icons-png.flaticon.com/512/11488/11488622.png"  alt="pic2" width="20" height="30"></button>
+</section>
+<aside>
+    <h2>This week's top TV and movies</h2>
+    <ul id="list">
+        <li><span style="font-weight: bold">Saltburn</span>, Rating:7.2</li>
+        <li><span style="font-weight: bold">12th Fail</span>, Rating:9.2</li>
+        <li><span style="font-weight: bold">Oppenheimer</span>, Rating: 8.4</li>
+        <li><span style="font-weight: bold">Wonka</span>, Rating: 7.3</li>
+        <li><span style="font-weight: bold">Dunki</span>, Rating: 7.7</li>
+        <li><span style="font-weight: bold">Killers of the Flower Moon</span>, Rating: 7.8</li>
+    </ul>
+</aside>
+<hr/>
+<main id="main">
+   <ul id="subnav">
+       <li>Action</li>
+       <li>Adventure</li>
+       <li>Comedy</li>
+       <li>Romance</li>
+       <li>History</li>
+       <li>Horror</li>
+       <li>Thriller</li>
+   </ul>
+    <p id="text">Action Movies:</p>
+    <div id="container">
+
+    </div>
+</main>
+<div id="dialog">
+    <section>
+        <p>The Title Movie: <span id="title"></span></p>
+        <p>Genre: <span id="genre"></span></p>
+        <p>Released Date: <span id="date"></span></p>
+        <p>Rating: <span id="rate"></span></p>
+        <p>Actors: <span id="actors"></span></p>
+        <p>Director: <span id="dir"></span></p>
+        <p>Plot: <span id="plot"></span></p>
+        <button id="return">Go Back</button>
+    </section>
+    <img src="" id="poster" alt="pic" width="300"  height="450"/>
+</div>
+<footer>
+    <p>Copyright by MovieFlex 2024</p>
+</footer>
+<script>
+    let api="edd358d9";
+    let flag=true;
+    $(document).ready(function (){
+        let step=1;
+        let index=1;
+        $("#to_right").click(function (){
+            index===6?index=1:index+=step;
+            $("#1>img").attr("src","sliki/"+(index===6?index=1:index) +".jpg");
+        })
+        $("#to_left").click(function (){
+            index===1?index=5:index-=step;
+            $("#1>img").attr("src","sliki/"+index +".jpg");
+        })
+        function getData(title,flag){
+            $("#container").html(" ");
+            $.ajax({
+                url:"http://omdbapi.com/?t=" + title + "&apikey=" + api,
+                dataType:"json",
+                success:function (data){
+                    let title=data.Title;
+                    let Genre=data.Genre;
+                    let date=data.Released;
+                    let plot=data.Plot;
+                    let rat=data.imdbRating;
+                    let act=data.Actors;
+                    let dir=data.Director;
+                    let pic=data.Poster;
+                    if(flag) {
+                        let main = $("#container");
+                        let newDiv = $("<div>");
+                        newDiv.addClass("mblock")
+                        newDiv.attr("title", title)
+                        let p2 = $("<p>");
+                        let p3 = $("<p>");
+                        let p4 = $("<p>")
+                        let poster = $("<img alt='pic'>");
+                        newDiv.attr("genre", Genre);
+                        newDiv.attr("date", date);
+                        newDiv.attr("plot", plot);
+                        newDiv.attr("rate", rat);
+                        newDiv.attr("actors", act);
+                        newDiv.attr("dir", dir);
+                        p2.html("Rating: " + rat)
+                        p3.html("Actors: " + act);
+                        p4.html("Director: " + dir);
+                        poster.attr("src", pic);
+                        newDiv.append(poster)
+                        newDiv.append(p2)
+                        newDiv.append(p3)
+                        newDiv.append(p4)
+                        newDiv.appendTo(main);
+                    }else if(flag===false){
+                        $("#dialog").show();
+                        $("#title").html(title);
+                        $("#genre").html(Genre);
+                        $("#plot").html(plot);
+                        $("#date").html(date);
+                        $("#actors").html(act);
+                        $("#dir").html(dir);
+                        $("#rate").html(rat);
+                        $("#poster").attr("src",pic)
+
+                    }
+                }
+            })
+        }
+        for (let i = 0; i <action.length ; i++) {
+            getData(action[i].title,flag);
+        }
+        $("#subnav>li").on("click",function (){
+            let type=$(this).html();
+            let text=$("#text");
+            switch (type) {
+                case "Action":
+                    text.html(type+" Movies:");
+                    for (let i = 0; i <action.length ; i++) {
+                        getData(action[i].title,flag);
+                    }
+                break;
+                case "Adventure":
+                    text.html(type+" Movies:");
+                    for (let i = 0; i <Adventure.length ; i++) {
+                        getData(Adventure[i].title,flag);
+                    }
+                    break;
+                case "Comedy":
+                    text.html(type+" Movies:");
+                    for (let i = 0; i <Comedy.length ; i++) {
+                        getData(Comedy[i].title,flag);
+                    }
+                    break;
+                case "Romance":
+                    text.html(type+" Movies:");
+                    for (let i = 0; i <Romance.length ; i++) {
+                        getData(Romance[i].title,flag);
+                    }
+                    break;
+                case "Horror":
+                    text.html(type+" Movies:");
+                    for (let i = 0; i <Horror.length ; i++) {
+                        getData(Horror[i].title,flag);
+                    }
+                    break;
+                case "Thriller":
+                    text.html(type+" Movies:");
+                    for (let i = 0; i <Thriller.length ; i++) {
+                        getData(Thriller[i].title,flag);
+                    }
+                    break;
+                case "History":
+                    text.html(type+" Movies:");
+                    for (let i = 0; i <History.length ; i++) {
+                        getData(History[i].title,flag);
+                    }
+                    break;
+            }
+        })
+        $("#check").click(function (){
+            let input=$("#search").val();
+            if(input!==" "){
+                flag=false;
+                $("#text").hide()
+                getData(input,flag);
+            }
+            $("#search").val(" ");
+        })
+        $(document).on("click",".mblock",function (){
+            $("#dialog").show();
+            let til=$(this).attr("title");
+            let genre=$(this).attr("genre");
+            let plot=$(this).attr("plot");
+            let date=$(this).attr("date");
+            let actors=$(this).attr("actors");
+            let rate=$(this).attr("rate");
+            let dir=$(this).attr("dir");
+            let poster=$(this).find("img").attr("src");
+            console.log(poster)
+            $("#title").html(til);
+            $("#genre").html(genre);
+            $("#plot").html(plot);
+            $("#date").html(date);
+            $("#actors").html(actors);
+            $("#dir").html(dir);
+            $("#rate").html(rate);
+            $("#poster").attr("src",poster)
+            $("#main").hide();
+        })
+        $("#return").click(function (){
+            $("#main").show();
+            $("#dialog").hide();
+            if(flag===false){
+                window.location.reload()
+            }
+        })
+        $("#list").on("click","li",function (){
+            flag=false;
+            let title=$(this).find("span").html();
+            getData(title,flag);
+            $("#main").hide();
+        })
+    })
+</script>
+</body>
+</html>

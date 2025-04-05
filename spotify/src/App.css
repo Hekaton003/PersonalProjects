@@ -1,0 +1,108 @@
+.App{
+    width: inherit;
+    height: inherit;
+}
+h1{
+   font-family: cursive;
+    font-size: 40px;
+    font-style: oblique;
+    font-palette: light;
+    margin-left: 5%;
+    color: gold;
+}
+main{
+    margin: auto;
+    width: 500px;
+    height: 60px;
+}
+main>input{
+    width: 400px;
+    padding: 9px;
+    border-radius: 10px;
+    background: linear-gradient(black,darkslateblue);
+    color: gold;
+    opacity: 80%;
+}
+input::placeholder{
+    color: gold;
+}
+main>button{
+    background-color: rgba(72, 61, 139, 0.26);
+    color: gold;
+    border: none;
+    padding: 9px;
+    position: relative;
+    left: -60px;
+    border-radius: 10px;
+}
+#container{
+    background: linear-gradient(black,darkslateblue);
+    padding-top: 5px;
+    color: gold;
+    padding-left: 10px;
+    display: inline-block;
+    border-radius: 10px;
+    opacity: 80%;
+    width: 600px;
+    overflow: auto;
+    height: 505px;
+    margin-left: 5%;
+    vertical-align: top;
+}
+#container>li img{
+    width: 100px;
+    height: 82px;
+    display: inline-block;
+    float: right;
+    margin-top: -10px;
+    margin-right: -10px;
+}
+#container>li {
+  width: 550px;
+  margin-bottom: 20px;
+    border: 1px blueviolet double;
+    padding: 10px;
+    list-style: none;
+    cursor: pointer;
+
+}
+#container>li h3{
+    display: inline-block;
+    width: 60%;
+}
+#songs,
+#fav{
+    display: inline-block;
+    margin-left: 20px;
+    background: linear-gradient(black,darkslateblue);
+    color: gold;
+    opacity: 80%;
+    padding:8px;
+    vertical-align: top;
+    overflow: auto;
+    height: 500px;
+    border-radius: 10px;
+}
+#songs li{
+    margin-bottom: 10px;
+    list-style: none;
+    padding: 5px;
+    text-align: center;
+    width: 300px;
+    border: 1px blueviolet solid;
+    border-radius: 10px;
+
+}
+#songs li a{
+    text-decoration: none;
+    color: gold;
+}
+h2{
+    text-align: center;
+    font-family: "Baskerville Old Face";
+    font-size: 30px;
+}
+#fav>li{
+    margin-bottom: 10px;
+    padding-left: 10px;
+}

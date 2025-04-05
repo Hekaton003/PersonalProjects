@@ -1,0 +1,76 @@
+body{
+    background-image: url("https://th.bing.com/th/id/R.bd2a34e6c43c52e2ec1ed5896adf0edf?rik=zKqhrHWT3uw58g&riu=http%3a%2f%2fwww.pixelstalk.net%2fwp-content%2fuploads%2f2016%2f03%2fAbove-the-clouds-wallpaper-HD.jpg&ehk=EXMITQBuh6dNxxe6lOywOcoQSOywOHU%2bUauxqVv0IcA%3d&risl=&pid=ImgRaw&r=0");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.App h1{
+    color: rgba(2, 19, 121, 0.56);
+    font-style: oblique;
+    font-weight: bolder;
+    font-size: 50px;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+    text-align: center;
+    padding-left: 10px;
+    text-transform: capitalize;
+}
+.App input{
+    margin-left: 33%;
+    width:500px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    opacity: 80%;
+    margin-bottom: 50px;
+}
+#MainDiv{
+    width: 650px;
+    height: 400px;
+    margin: auto;
+    background-color: lightgray;
+    opacity: 80%;
+    border-radius: 20px;
+}
+#MainDiv>img{
+    display: inline-block;
+    float: left;
+    margin-top: 50px;
+    margin-left: 36px;
+}
+#MainDiv>div{
+    display: inline-block;
+    margin-left:20%;
+    margin-top: 7%;
+    text-align: left;
+}
+#MainDiv h3{
+    font-style: oblique;
+    font-weight: normal;
+    font-size: 23px;
+}
+#MainDiv h2{
+    letter-spacing: 2px;
+    font-style: oblique;
+    font-weight: bolder;
+    font-size: 35px;
+}
+#MainDiv p,
+#MainDiv h4{
+    font-style: italic;
+}
+.blocks{
+    width: 100px;
+    height: 170px;
+    display: inline-block;
+    background-color: lightgray;
+    opacity: 80%;
+    margin-right: 10px;
+    padding: 5px;
+    border-radius: 10px;
+    text-align: center;
+}
+#par2{
+    position: relative;
+    left: 30%;
+    top:-100px;
+    width: 50%;
+}

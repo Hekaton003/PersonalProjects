@@ -1,0 +1,46 @@
+﻿@model MobileStore.Models.ContactFormViewModel
+@{
+    ViewBag.Title = "Contact Us";
+}
+
+<div class="container">
+    <h2 style="padding-top:10px;">Contact Us</h2>
+    <hr />
+
+    @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Your Name", required = "required" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", type = "email", placeholder = "Your Email", required = "required" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Subject, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.Subject, new { @class = "form-control", placeholder = "Subject", required = "required" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Message, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.TextAreaFor(model => model.Message, new { @class = "form-control", rows = "5", placeholder = "Your Message", required = "required" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </div>
+        </div>
+    }
+</div>

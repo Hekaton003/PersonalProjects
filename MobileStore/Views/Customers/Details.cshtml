@@ -1,0 +1,173 @@
+﻿@model MobileStore.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+}
+<style>
+    #first {
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        margin-top: 20px;
+        width: 500px;
+        display:inline-block;
+        margin-left:20px;
+       
+    }
+
+    #first h3 {
+            color: #333;
+            margin-bottom: 10px;
+    }
+
+    #first hr {
+            margin: 10px 0;
+            border: none;
+            border-top: 1px solid #ccc;
+    }
+
+    .dl-horizontal {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+        .dl-horizontal dt, .dl-horizontal dd {
+            width: 50%;
+            padding: 10px 0;
+        }
+
+        .dl-horizontal dt {
+            font-weight: bold;
+            color: #555;
+            text-align: left;
+            padding-right: 15px;
+        }
+
+        .dl-horizontal dd {
+            color: #333;
+            padding-left: 5px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+    dl-horizontal dd:last-child {
+                border-bottom: none;
+            }
+
+   #first p {
+        margin-top: 20px;
+    }
+
+   #first p a {
+            margin-right: 15px;
+            color: #007bff;
+            text-decoration: none;
+    }
+
+    #first p a:hover {
+          text-decoration: underline;
+    }
+
+    #second {
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        margin-top: 20px;
+        width: 750px;
+        display: inline-block;
+        float: right;
+        overflow-y: scroll;
+        height: 400px;
+    }
+
+        #second h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        #second hr {
+            margin: 10px 0;
+            border: none;
+            border-top: 1px solid #ccc;
+        }
+
+    .order {
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+
+        .order p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #666;
+        }
+
+    .order-date {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .order-mobile-name {
+        font-size: 18px;
+        color: #000;
+    }
+
+    .order-mobile-price {
+        color: #d48c28;
+        font-weight: bold;
+    }
+    .link{
+        color:orange;
+    }
+</style>
+<h1 style="text-align:center">@Model.Name</h1>
+<hr/>
+<div id="first">
+    <h3>Personal Informations</h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Phone)</dt>
+        <dd>@Html.DisplayFor(model => model.Phone)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Address)</dt>
+        <dd>@Html.DisplayFor(model => model.Address)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Email)</dt>
+        <dd>@Html.DisplayFor(model => model.Email)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Country)</dt>
+        <dd>@Html.DisplayFor(model => model.Country)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.City)</dt>
+        <dd>@Html.DisplayFor(model => model.City)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.PostalCode)</dt>
+        <dd>@Html.DisplayFor(model => model.PostalCode)</dd>
+    </dl>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) 
+        @Html.ActionLink("Change your password", "ChangePassword", "Manage") 
+        @Html.ActionLink("Back", "Index", "Home")
+    </p>
+</div>
+@if (Model.Orders.Count > 0)
+{
+    <div id="second">
+
+        <h3>Previous orders</h3>
+        <hr />
+        @for (int i = 0; i < Model.Orders.Count; i++)
+        {
+        <div class="order">
+            <p class="order-date">Order Date: @Model.Orders[i].Date.ToString("dd MMM yyyy  hh:mm tt")</p>
+            <p class="order-mobile-name">Mobile: <a class="link" href="/Home/Details/@Model.Orders[i].Mobile.ID">@Model.Orders[i].Mobile.Name (@Model.Orders[i].Color)</a></p>
+            <p class="order-mobile-price">Price: @Model.Orders[i].Mobile.Price.ToString("F2") EUR x @Model.Orders[i].Quantity</p>
+        </div>
+        }
+    </div>
+}

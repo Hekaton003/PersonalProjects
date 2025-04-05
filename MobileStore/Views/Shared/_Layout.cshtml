@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        body {
+            background: linear-gradient(crimson,orange);
+        }
+
+        .body-content {
+            background-color: whitesmoke;
+            margin-left: 5%;
+            width: 88.8%;
+            min-height: 680px;
+            padding-bottom: 30px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            font-size: 14px;
+        }
+
+            footer .fcontainer {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+
+        .footer-section {
+            flex: 1 1 200px;
+            margin: 10px;
+            padding: 10px;
+        }
+
+            .footer-section h4 {
+                margin-bottom: 10px;
+                font-size: 18px;
+                color: #ff9900;
+            }
+
+            .footer-section p, .footer-section ul, .footer-section form {
+                margin: 0;
+            }
+
+            .footer-section ul {
+                list-style: none;
+                padding: 0;
+            }
+
+                .footer-section ul li {
+                    margin-bottom: 5px;
+                }
+
+                    .footer-section ul li a {
+                        color: #fff;
+                        text-decoration: none;
+                    }
+
+                        .footer-section ul li a:hover {
+                            text-decoration: underline;
+                        }
+
+            .footer-section .social-icons {
+                margin-top: 10px;
+            }
+
+                .footer-section .social-icons a {
+                    color: #fff;
+                    margin-right: 10px;
+                    font-size: 20px;
+                    text-decoration: none;
+                }
+
+            .footer-section form {
+                display: flex;
+                margin-top: 10px;
+            }
+
+                .footer-section form input {
+                    flex: 1;
+                    padding: 5px;
+                    border: none;
+                    border-radius: 3px 0 0 3px;
+                }
+
+                .footer-section form button {
+                    padding: 5px 10px;
+                    border: none;
+                    background-color: #ff9900;
+                    color: #fff;
+                    border-radius: 0 3px 3px 0;
+                    cursor: pointer;
+                }
+
+                    .footer-section form button:hover {
+                        background-color: #ff7700;
+                    }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 10px 0;
+            border-top: 1px solid #444;
+        }
+
+            .footer-bottom p {
+                margin: 0;
+                font-size: 12px;
+            }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            @Html.ActionLink("MVC Mobile Store", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    @if (User.IsInRole("Admin"))
+                    {
+
+                    <li>@Html.ActionLink("Product", "Product", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    <div class="body-content">
+        @RenderBody()
+    </div>
+    <footer style="margin-top:10px;color:white" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="fcontainer">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non urna euismod, placerat nisi ut, iaculis risus.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Help & FAQs</a></li>
+                    <li><a href="#">Shipping & Delivery</a></li>
+                    <li><a href="#">Returns & Exchanges</a></li>
+                    <li><a href="/Home/Contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Subscribe to Our Newsletter</h4>
+                <form>
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 YourStoreName. All Rights Reserved.</p>
+        </div>
+    </footer>
+    @RenderSection("scripts", required: false)
+     @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/themes/base/css")
+    
+</body>
+
+</html>

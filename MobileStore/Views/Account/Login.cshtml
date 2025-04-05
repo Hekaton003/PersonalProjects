@@ -1,0 +1,95 @@
+﻿@using MobileStore.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+<style>
+    .form-group {
+        width: 450px;
+    }
+    .checkbox{
+        margin-left:-70px;
+    }
+    #RegisterP {
+        width: 450px;
+        display: inline-block;
+    }
+
+    img {
+        width: 870px;
+        height: auto;
+        margin-left: -40px;
+        margin-top: -19px;
+        display: inline-block;
+    }
+
+    .col-md-2 {
+        max-width: 450px;
+        min-width:450px;
+        width:450px;
+    }
+}
+    #title {
+        margin-left: 30px;
+    }
+    .offset-md-2{
+        margin-left:-20px;
+    }
+</style>
+<main aria-labelledby="title">
+    <h2 id="title">Log in </h2>
+    <hr />
+    <section id="RegisterP">
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="offset-md-2 col-md-10">
+            <div class="checkbox">
+                @Html.CheckBoxFor(m => m.RememberMe)
+                @Html.LabelFor(m => m.RememberMe)
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div>
+            <input style="margin-left:25%;" type="submit" value="Log in" class="btn btn-outline-dark" />
+        </div>
+    </div>
+    <p style="display:inline-block; margin-left:10px">
+        @Html.ActionLink("Register as a new user", "Register")
+    </p><p style="display:inline-block; margin-left:60px">
+        @Html.ActionLink("Forgot your password?", "ForgotPassword")
+    </p>
+}
+    </section>
+    <img src="https://xantrex.com/wp-content/uploads/2022/05/20220511_trustedtechnology2.jpg" />
+    
+</main>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

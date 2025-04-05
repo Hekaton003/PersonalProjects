@@ -1,0 +1,318 @@
+﻿@model MobileStore.Models.MobileReview
+
+@{
+    ViewBag.Title = "Details";
+    float sum = 0;
+}
+
+<h2 style="padding-top:10px">@Model.Mobile.Name</h2>
+<hr />
+<style>
+    #table_section {
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 20px;
+    }
+
+    td {
+        padding: 10px;
+    }
+
+    th {
+        padding: 5px;
+        text-align: center
+    }
+
+    #carousel {
+        display: inline-block;
+        width: 700px;
+        height: auto;
+        margin-left: 100px;
+    }
+
+        #carousel > div {
+            display: inline-block;
+            float: left;
+            text-align: center
+        }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-image: none; /* Remove the default icon */
+    }
+
+        .carousel-control-prev-icon::after,
+        .carousel-control-next-icon::after {
+            content: '❮'; /* Unicode character for the arrow */
+            font-size: 55px;
+            color: black; /* Set the color to black */
+        }
+
+        .carousel-control-next-icon::after {
+            content: '❯'; /* Unicode character for the arrow */
+        }
+
+    #ReviewForm {
+        display: none;
+    }
+
+    .comment-section {
+        border-top: 1px solid #ccc;
+        margin-top: 20px;
+        padding-top: 20px;
+    }
+
+    .comment {
+        margin-bottom: 20px;
+    }
+
+    .comment-header {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .comment-author {
+        color: #d48c28 /* You can change the color to match your theme */
+    }
+
+    .comment-date {
+        margin-left: 10px;
+        color: #666;
+    }
+
+    .comment-body {
+        font-size: 15px;s
+        font-style: oblique;
+        line-height: 1.6;
+    }
+
+    #Comment {
+        display: inline-block;
+        margin-top: -560px;
+        margin-bottom: 40px;
+        min-width: 300px;
+    }
+
+    .comment-rating {
+        margin-right: 10px;
+    }
+
+        .comment-rating .fas {
+            color: #ffc107; /* Color for filled stars */
+        }
+
+        .comment-rating .far {
+            color: #ccc; /* Color for empty stars */
+        }
+</style>
+
+<section id="carousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        @{
+            string[] images = Model.Mobile.ImageURL.Split(',');
+            for (int i = 0; i < images.Length; i++)
+            {
+                <div class="carousel-item @(i == 0 ? "active" : "")">
+                    <img src="@images[i]" width="500px" height="400px" />
+                </div>
+            }
+        }
+    </div>
+    <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </a>
+    <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </a>
+</section>
+
+<section id="table_section">
+    <table class="table-bordered table-group-divider">
+        <thead>
+            <tr>
+                <th colspan="2">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Brand</td>
+                <td>@Model.Mobile.Brand</td>
+            </tr>
+            @{
+                string[] text = Model.Mobile.Description.Split(',');
+                foreach (var desc in text)
+                {
+                    var parts = desc.Split(':');
+                    if (parts.Length == 2)
+                    {
+                        <tr>
+                            <td>@parts[0]</td>
+                            <td>@parts[1]</td>
+                        </tr>
+                    }
+                }
+            }
+            <tr>
+                <td>Colors</td>
+                <td>@Model.Mobile.Color</td>
+            </tr>
+            <tr>
+                <td><h4>Price</h4></td>
+                <td><strong>@Model.Mobile.Price EYR</strong></td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+</section>
+
+<section id="Comment">
+    <button id="CreateReview" mobile-id="@Model.Mobile.ID" class="btn btn-primary">Add Review</button>
+    <button id="OrderMobile" color-arr="@Model.Mobile.Color" style="margin-left:40px" mobile-id="@Model.Mobile.ID" class="btn btn-primary">Order</button>
+    @if (User.IsInRole("Admin"))
+    {
+        <button style="margin-left:40px;" class="btn btn-primary">
+            <a style="text-decoration:none; color:white;" href="@Url.Action("Edit", "Home", new { id = Model.Mobile.ID })">Edit</a></button>
+     }
+     <div class="comment-section">
+          <h4>Comments</h4>
+                @{
+                    if (Model.Mobile.Reviews.Any())
+                    {
+                        foreach (var item in Model.Mobile.Reviews)
+                        {
+                            <div class="comment">
+                                <div class="comment-header">
+                                    <span class="comment-author">@item.Name</span>
+                                    <span class="comment-rating">
+                                        @for (int i = 0; i < item.rating; i++)
+                                        {
+                                            <i class="fas fa-star"></i>
+                                        }
+                                        @for (int i = 0; i < (5 - item.rating); i++)
+                                        {
+                                            <i class="far fa-star"></i>
+                                        }
+                                    </span>
+                                    <span class="comment-date">@item.DateTime</span>
+                                </div>
+                                <div class="comment-body">
+                                    <span>@item.Comment</span>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+
+            <div id="ReviewForm">
+                @using (Html.BeginForm("AddReview", "Home", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Review.Name)
+                        @Html.TextBoxFor(m => m.Review.Name, new { @class = "form-control", @id = "reviewerName" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Review.Comment)
+                        @Html.TextAreaFor(m => m.Review.Comment, new { @class = "form-control", @id = "content" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Review.rating)
+                        @Html.DropDownListFor(m => m.Review.rating, new SelectList(Enumerable.Range(0, 6).Select(x => new { Value = x, Text = x.ToString() }), "Value", "Text"), "Select Rating", new { @class = "form-control", @id = "starRating" })
+                    </div>
+                    @Html.HiddenFor(m => m.Review.ProductID)
+                    @Html.HiddenFor(m => m.Review.DateTime)
+
+                }
+            </div>
+            </div>
+
+
+
+            @section Scripts {
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                <script>
+        $(document).ready(function () {
+            $("#carousel").carousel({
+                interval: 500,
+                pause: 'hover',
+                wrap: true
+            });
+
+            $("#CreateReview").on("click", function () {
+                var productId = $(this).attr("mobile-id");
+                console.log(productId);
+                var form = $("#ReviewForm").html();
+                var $formHtml = $(form);
+                $(".hidden").val(productId)
+                bootbox.dialog({
+                    title: "Add Review",
+                    message: $formHtml,
+                    buttons: {
+                        cancel: {
+                            label: 'Cancel',
+                            className: 'btn-secondary'
+                        },
+                        confirm: {
+                            label: 'Submit Review',
+                            className: 'btn-primary',
+                            callback: function () {
+                                $.ajax({
+                                    url: "/Home/AddReview",
+                                    method: "POST",
+                                    data: $formHtml.serialize(),
+                                    success: function () {
+                                        location.reload();
+                                    }
+                                })
+
+                                return false;
+                            }
+                        }
+                    },
+                })
+            })
+            $("#OrderMobile").on("click", function () {
+                var but = $(this);
+                var id = but.attr("mobile-id");
+                bootbox.confirm("Do you want to order @Model.Mobile.Name ?", function (response) {
+                    if (response) {
+                        var colors = but.attr('color-arr').split(',');
+                        colors = colors.map(function (color) {
+                            return {
+                                text: color,
+                                value: color
+                            }
+                        })
+                        bootbox.prompt({
+                            title: "Select a color:",
+                            inputType: 'select',
+                            inputOptions: colors,
+                            callback: function (result) {
+                                if (result !== null) {
+                                    $.ajax({
+                                        url: "/Home/AddMobiles",
+                                        method: "POST",
+                                        data: {
+                                            id: id,
+                                            color: result
+                                        },
+                                        success: function () {
+                                            window.location.href = "/Home/AddToCart";
+                                        },
+                                        error: function () {
+                                            alert('An error occurred while processing your order. Please try again.');
+                                        }
+                                    });
+                                } else {
+                                    alert("User canceled the selection");
+                                }
+                            }
+                        });
+
+                    }
+                });
+            });
+        });
+                </script>
+            }

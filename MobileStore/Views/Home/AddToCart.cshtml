@@ -1,0 +1,140 @@
+﻿@model IEnumerable<MobileStore.Models.Order>
+@{
+    ViewBag.Title = "AddToCart";
+    int minimum = 0;
+    int size = 0;
+    if (Model != null)
+    {
+        size = Model.Count();
+    }
+}
+<style>
+    .blockSide {
+        width: 360px;
+        height: auto;
+        margin-right: 30px;
+        margin-bottom: 50px;
+        display: inline-block;
+        vertical-align: top;
+        border: 2px solid;
+        padding: 10px;
+        border-radius:30px;
+    }
+    .blockSide img {
+            width: 300px;
+            height: 300px;
+            margin-left: 18px;
+    }
+    .quantity{
+        text-align:center;
+        margin-left:25px;
+    }
+</style>
+<h2>Your Cart Items</h2>
+<hr />
+@if (size == 0)
+{
+    <p>Your cart is empty!</p>
+}
+else
+{
+    int i=0;
+    foreach (var item in Model)
+    {
+        var colors = item.Mobile.Color.Split(',');
+        var index = 0;
+        for(int j = 0; j < colors.Length; j++)
+        {
+            if (colors[j]==item.Color)
+            {
+                index = j;
+                break;
+            }
+        }
+
+        <div class="blockSide" data-index="@i">
+            <h4 style="text-align:center">@item.Mobile.Name</h4>
+            <hr />
+            <img src="@item.Mobile.ImageURL.Split(',')[index]" alt="Mobile Image" />
+            <p style="text-align:center">Quantity</p>
+            <input class="quantity form-control" price="@item.Mobile.Price" mobile-id="@i" value="@item.Quantity" type="number" min="@minimum" max="@item.Mobile.Quantity" />
+        </div>
+        i += 1;
+
+    }
+    <section id="Section2">
+        <h4>Total: <span id="totalPrice"></span> EYR</h4>
+        <button id="payButton" class="btn btn-dark">Pay</button>
+    </section>
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            function calculateTotal() {
+                var total = 0;
+                $(".quantity").each(function () {
+                    var quantity = $(this).val();
+                    var price = $(this).attr("price");
+                    total += quantity * price;
+                });
+                $("#totalPrice").html(total);
+            }
+
+            $(".quantity").on("change", function () {
+                var button = $(this);
+                var quantity = button.val();
+                var mobileIndex = button.attr("mobile-id");
+                if (quantity == 0) {
+                    $.ajax({
+                        url: "/Home/RemoveFromCart",
+                        method: "GET",
+                        data: {
+                            index: mobileIndex
+                        },
+                        success: function () {
+                            button.parents(".blockSide").remove();
+                            if ($(".blockSide").length == 0) {
+                                $("hr").after("<p>Your cart is empty!</p>");
+                                $("#Section2").hide()
+                            }
+                            calculateTotal();
+                        }
+                    });
+                } else {
+                    $.ajax({
+                        url: "/Home/UpdateCartQuantity",
+                        method: "POST",
+                        data: {
+                            index: mobileIndex,
+                            quantity: quantity
+                        },
+                        success: function (response) {
+                            if (response.success) {
+                                calculateTotal();
+                            } else {
+                                alert(response.message);
+                            }
+                        }
+                    });
+                }
+            });
+
+            $("#payButton").on("click", function () {
+                $.ajax({
+                    url: "/Home/SaveOrder",
+                    method: "POST",
+                    success: function () {
+                            alert("Order has been placed successfully!");
+                            $(".blockSide").remove();
+                            $("#totalPrice").text(0);
+                            $("hr").after("<p>Your cart is empty!</p>");    
+                    }
+                });
+            });
+
+            // Initial calculation
+            calculateTotal();
+        });
+    </script>
+}

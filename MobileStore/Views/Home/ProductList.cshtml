@@ -1,0 +1,20 @@
+﻿@model IEnumerable<MobileStore.Models.Mobile>
+
+@foreach (var item in Model)
+{
+    var arr = item.ImageURL.Split(',');
+    <div class="blockSide">
+        <h4>@item.Name</h4>
+        <hr />
+        <img src="@arr[0]" width="260" alt="Mobile Image" />
+        <p>Price: <strong>@item.Price EYR</strong></p>
+        <button class="btn btn-secondary">
+            <a href="@Url.Action("Details", "Home", new { id = item.ID })"
+               style="text-decoration:none; color:whitesmoke">Details</a>
+        </button>
+        @if (User.IsInRole("Admin"))
+        {
+            <button class="btn btn-danger del-btn" mobile-id="@item.ID">Delete</button>
+        }
+    </div>
+}

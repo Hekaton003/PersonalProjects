@@ -1,0 +1,106 @@
+.TennisBlock{
+    margin-top: 40px;
+}
+#slick-slide00{
+    width: 100%;
+    background: url("https://static.theceomagazine.net/wp-content/uploads/2019/12/13105321/rolex-golf-3.jpg") no-repeat;
+    background-size: cover;
+    backdrop-filter: brightness(60%);
+    border-radius: 40px;
+    color: whitesmoke;
+    height: 30%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+#slick-slide01{
+    width: 100%;
+    background-size: cover;
+    backdrop-filter: brightness(60%);
+    border-radius: 40px;
+    padding-top: 5%;
+    color: whitesmoke;
+    height: 40%;
+    padding-bottom: 1%;
+    background: url("https://media.rolex.com/image/upload/q_auto:best/f_auto/c_limit,w_3840/v1708406843/rolexcom/rolex-and-sports/golf/navigation/rolex-and-sports-golf-the-open-navigation-bop14ct-0482") no-repeat;
+}
+#slick-slide02{
+    width: 100%;
+    background-size: cover;
+    backdrop-filter: brightness(60%);
+    border-radius: 40px;
+    padding-top: 4%;
+    color: whitesmoke;
+    height: 50%;
+    padding-bottom: 1%;
+    background: url("https://golftoday.co.uk/wp-content/uploads/2018/08/rolex-trophy_koivu4.jpg") no-repeat;
+}
+#slick-slide03{
+    width: 100%;
+    background-size: cover;
+    backdrop-filter: brightness(60%);
+    border-radius: 40px;
+    padding-top: 5%;
+    color: whitesmoke;
+    height: 44%;
+    padding-bottom: 1%;
+    background: url("https://res.cloudinary.com/usga/image/upload/c_fill,dpr_3.0,g_face,q_70,w_450/v1/usga/images/championships/2020/womens-open/article-splash/nelly-korda-article.jpg ") no-repeat;
+
+}
+#slick-slide00 .MSBlock1{
+    background-color: seagreen;
+    opacity: 80%;
+    color: wheat;
+    width: 55%;
+    margin-left: 2%;
+    position: relative;
+    top:10%;
+    padding: 10px;
+    text-align: center;
+    border-radius: 40px;
+}
+#slick-slide01 .MSBlock1{
+    background-color: seagreen;
+    opacity: 80%;
+    color: wheat;
+    width: 55%;
+    left: 35%;
+    position: relative;
+    top:-25%;
+    padding: 10px;
+    text-align: center;
+    border-radius: 40px;
+}
+#slick-slide02 .MSBlock1{
+    background-color: seagreen;
+    opacity: 80%;
+    color: wheat;
+    width: 55%;
+    left: 5%;
+    position: relative;
+    top:20%;
+    padding: 10px;
+    text-align: center;
+    border-radius: 40px;
+}
+#slick-slide03 .MSBlock1{
+    background-color: seagreen;
+    opacity: 80%;
+    color: wheat;
+    width: 55%;
+    left: 5%;
+    position: relative;
+    top:30%;
+    padding: 10px;
+    text-align: center;
+    border-radius: 40px;
+}
+#Yachting{
+    width: 100%;
+    margin-top:21px;
+}
+.YachtingBlock{
+    margin: 10px;
+}
+#yacht{
+    margin: 20px;
+}

@@ -1,0 +1,65 @@
+{% extends "product/Base.html" %}
+{% load static %}
+{% block content %}
+    <h1 style="text-align: center;margin-top: 10px">Rolex's watches</h1>
+    <div class="mt-4 ml-5">
+        <form method="get">
+            <div class="form-group mr-4 d-inline">
+                <label>
+                    <select name="selected_category" class="form-control">
+                        <option value="">All Categories</option>
+                        {% for cat in categories %}
+                            <option value="{{ cat }}" {% if selected_category == cat %}selected{% endif %}>{{ cat }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+            </div>
+            <div class="form-group mr-4 d-inline">
+                <label>
+                    <input type="number"
+                           name="max_price"
+                           placeholder="Maximum price"
+                           value="{{ current_max_price }}"
+                           min="0"
+                           step="0.01"
+                           class="form-control"/>
+                </label>
+            </div>
+            <div class="form-group d-inline mb-1">
+                 <button type="submit" class="btn btn-secondary">Filter</button>
+            </div>
+        </form>
+    </div>
+ <div id="container">
+    {% for watch in watches %}
+            <div class="ProductBlock">
+                <h4>{{ watch.name }}</h4>
+                <img class="img-thumbnail" src="{{watch.image.url}}" width="300px"/>
+                <p style="text-align: center">{{ watch.description }}</p>
+                <p>${{ watch.price }}</p>
+                <form method="get" action="{% url "add-to-basket" watch.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn  btn-light btn-group-lg">Add To Cart</button>
+                </form>
+            </div>
+    {% endfor %}
+ </div>
+ <div id="pag-menu">
+        {% if page_obj.has_previous %}
+            <a class="btn btn-outline-info mb-4" style="background-color: seagreen;color: whitesmoke" href="?page=1&selected_category={{ selected_category }}&max_price={{ current_max_price }}">First</a>
+            <a class="btn btn-outline-info mb-4" style="background-color: seagreen;color: whitesmoke"
+               href="?page={{ page_obj.previous_page_number }}&selected_category={{ selected_category }}&max_price={{ current_max_price }}">Previous</a>
+        {% endif %}
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <a class="btn btn-info mb-4" style="background-color: seagreen" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'2' %}
+                <a class="btn btn-outline-info mb-4" style="background-color: seagreen;color: whitesmoke" href="?page={{ num }}&selected_category={{ selected_category }}&max_price={{ current_max_price }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <a class="btn btn-outline-info mb-4" style="background-color: seagreen; color: whitesmoke" href="?page={{ page_obj.next_page_number }}&selected_category={{ selected_category }}&max_price={{ current_max_price }}">Next</a>
+            <a class="btn btn-outline-info mb-4" style="background-color: seagreen; color: whitesmoke" href="?page={{ page_obj.paginator.num_pages }}&selected_category={{ selected_category }}&max_price={{ current_max_price }}">Last</a>
+        {% endif %}
+ </div>
+{% endblock %}

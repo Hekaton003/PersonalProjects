@@ -1,0 +1,47 @@
+.site-footer {
+    background-color: seagreen;
+    padding: 2rem 0;
+    margin-top: 3rem;
+    border-top: 1px solid #eaeaea;
+}
+
+.site-footer .container {
+    max-width: 1200px;
+    margin-top:-1%;
+    padding: 0 15px;
+}
+
+.site-footer .copyright {
+    text-align: right;
+    padding-left: 10%;
+    color:whitesmoke;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    display: inline-block;
+}
+
+.social-icons {
+    display: inline-flex;
+    margin-left: 20%;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.social-icon {
+    color: whitesmoke;
+    font-size: 1.25rem;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-3px);
+    opacity: 0.8;
+}
+
+/* Brand colors */
+.social-icon.fa-facebook-f:hover { color: #4267B2; }
+.social-icon.fa-instagram:hover { color: #E1306C; }
+.social-icon.fa-twitter:hover { color: #1DA1F2; }
+.social-icon.fa-youtube:hover { color: #FF0000; }
+.social-icon.fa-linkedin-in:hover { color: #0077B5; }
+.social-icon.fa-pinterest-p:hover { color: #E60023; }

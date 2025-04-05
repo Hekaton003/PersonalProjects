@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'product/main.css' %}">
+    <link rel="stylesheet" href="{% static 'product/footer.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    {% block extra_css %}{% endblock %}
+    <title>Rolex Online Shop</title>
+</head>
+<body>
+    <header class="App-header">
+         <img src="/media/uploads/logo.jpg" class="img-thumbnail" alt='logo' title='rolex-logo'/>
+    </header>
+    <header class="site-header" id="nav-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+         <div class="container">
+            <a class="navbar-brand mr-4" href="/">Rolex Online Shop</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggle">
+                <div class="navbar-nav mr-auto">
+                    <a class="nav-item nav-link" href="{% url "about" %}">About Us</a>
+                    <a class="nav-item nav-link" href="{% url "location" %}">Location</a>
+                    <a class="nav-item nav-link" href="{% url "contact" %}">Contact</a>
+                </div>
+                <!-- Navbar Right Side -->
+                <div class="navbar-nav mr-4">
+                    {% if user.is_authenticated %}
+                        <a class="nav-item nav-link" href="{% url "profile" %}">Profile</a>
+                        <form action="{% url "logout" %}" method="post">
+                            {% csrf_token %}
+                             <div class="nav-item nav-link"  onclick="this.closest('form').submit();" style="cursor:pointer;">
+                                    Logout
+                             </div>
+                        </form>
+                    {% else %}
+                        <a class="nav-item nav-link" href="{% url "login" %}">Login</a>
+                        <a class="nav-item nav-link" href="{% url "register" %}">Register</a>
+                    {% endif %}
+                </div>
+                <div class="navbar-nav">
+                    {% if user.is_authenticated %}
+                         <form method="get" action="{%  url "basket-view" %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-light ">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        </nav>
+    </header>
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% block content %}{% endblock %}
+            </div>
+            <div class="col-md-4">
+                <div class="content-section">
+                    <br/>
+                    <br/>
+                    <p class='text-muted'>Rolex and Sport
+                        <ul class="list-group">
+                            <li class="list-group-item"><a class="list-group-item-light" href="{% url "tennis" %}">Tennis</a></li>
+                            <li class="list-group-item"><a class="list-group-item-light" href="{% url "golf" %}">Golf</a></li>
+                            <li class="list-group-item"><a class="list-group-item-light" href="{% url "yacht" %}">Yachting</a></li>
+                             <li class="list-group-item "><a class="list-group-item-light" href="{% url "moto" %}">Motor sport</a></li>
+                        </ul>
+                    </p>
+                    <p class='text-muted'>Rolex and Perpetual Arts
+                        <ul class="list-group">
+                            <li class="list-group-item"><a class="list-group-item-light" href="{% url "cinema" %}">Cinema</a></li>
+                            <li class="list-group-item list-group-item-light"><a class="list-group-item-light" href="{% url "music" %}">Music</a></li>
+                            <li class="list-group-item list-group-item-light"><a class="list-group-item-light" href="{% url "architecture" %}">Architecture</a></li>
+                        </ul>
+                    </p>
+                    <p class='text-muted'>Latest watches
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-light">Cosmograph Daytona</li>
+                            <li class="list-group-item list-group-item-light">Yacht Master 42</li>
+                            <li class="list-group-item list-group-item-light">GMT-MASTER II</li>
+                            <li class="list-group-item list-group-item-light">Oyster Perpetual</li>
+                            <li class="list-group-item list-group-item-light">Day Date 36</li>
+                        </ul>
+                    </p>
+                </div>
+                {% if isAbout %}
+                    <div id="aside-figure">
+                        <figure id='fig1'>
+                            <img src='https://upload.wikimedia.org/wikipedia/commons/3/38/Rolex_GMTIIC.jpg' width='300' height='200' alt='watch'/>
+                             <figcaption>Rolex GMT Master II gold and stainless steel </figcaption>
+                        </figure>
+                        <figure id='fig2'>
+                            <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Rolex_Datejust_36_-_Presentation_Ready_%2850826141683%29.jpg/1280px-Rolex_Datejust_36_-_Presentation_Ready_%2850826141683%29.jpg' width='300' height='200' alt='watch'/>
+                            <figcaption>Rolex Datejust</figcaption>
+                        </figure>
+                        <div>
+                            <br/>
+                            <p id='footer'>For more information about the rolex company, you can find in <a href='https://www.rolex.com/about-rolex-watches/history/1905-1919' target='_blank'>Learn more</a></p>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="container">
+            <p class="copyright">Copyright &copy; The Rolex E-Commerce Shop {% now "Y" %}</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/rolex" target="_blank" rel="noopener noreferrer" class="social-icon">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/rolex" target="_blank" rel="noopener noreferrer" class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://twitter.com/rolex" target="_blank" rel="noopener noreferrer" class="social-icon">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.youtube.com/rolex" target="_blank" rel="noopener noreferrer" class="social-icon">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/rolex" target="_blank" rel="noopener noreferrer" class="social-icon">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.pinterest.com/rolex" target="_blank" rel="noopener noreferrer" class="social-icon">
+                    <i class="fab fa-pinterest-p"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

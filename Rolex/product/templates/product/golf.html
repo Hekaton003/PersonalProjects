@@ -1,0 +1,58 @@
+{% extends "product/Base.html" %}
+{% load static %}
+{% block extra_css %}
+      <link rel="stylesheet" href="{% static 'product/aside.css' %}">
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+{% endblock %}
+{% block content %}
+     <h1 style="text-align: center;margin-top: 10px">Rolex and Golf</h1>
+            <div class="golf-carousel">
+                <div id='GolfBlock1'>
+                    <div class='MSBlock1'>
+                        <h2>History of the partnership between Rolex and Golf</h2>
+                        <p>The connection that has existed between Rolex and golf for more than half a century is rooted in the very essence of the game.
+                        Since its initial association in 1967 with Arnold Palmer, joined by Jack Nicklaus and Gary Player – known together as The Big Three –, Rolex has helped to perpetuate excellence in the discipline, forging partnerships with institutions and their greatest events, while also supporting both seasoned champions and promising talent.
+                        Since this landmark partnership with three of golf’s greats, the relationship between Rolex and golf has flourished, attaining global reach.</p>
+                    </div>
+                </div>
+                <div id='GolfBlock2'>
+                    <div class='MSBlock1'>
+                        <h2>At the heart of the game</h2>
+                        <p>The brand supports men’s and women’s golf at all levels; from legendary players such as Tiger Woods and Annika Sörenstam, to junior and amateur golfers. Today, Rolex sponsors many of the most prestigious tournaments and is part of the very fabric of the game. The association between the brand and the sport stands for quality, elegance, reliability and a pioneering spirit.</p>
+                    </div>
+                </div>
+                <div id='GolfBlock3'>
+                    <div class='MSBlock1'>
+                        <h2>Today’s champions</h2>
+                        <p>There can be little doubt about what makes a Rolex Testimonee. These players and the Swiss watchmaker share a perpetual ambition for excellence and superior performance. They include today’s established champions, athletes whose skill and application have earned them a place at the pinnacle of the professional game.
+                        </p>
+                    </div>
+                </div>
+                <div id="GolfBlock4">
+                    <div class='MSBlock1'>
+                        <h2>Women’s golf</h2>
+                        <p>Since 1980, Rolex has been a partner of the Ladies Professional Golf Association (LPGA), serving as its Official Timekeeper, including at the five women’s Majors. The brand also supports the Ladies European Tour (LET), the Rolex Women’s World Rankings and the Rolex LPGA Awards that recognize the tour’s top players. Its commitment also extends to women’s team golf as a Global Partner of the Solheim Cup, the premier intercontinental challenge between the United States and Europe.</p>
+                    </div>
+                </div>
+            </div>
+{% endblock %}
+{% block extra_js %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Slick Carousel JS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+        $(document).ready(function (){
+           $('.golf-carousel').slick({
+               dots:true,
+               infinite:true,
+               speed: 300,
+               slidesToShow: 1, // Number of slides to show at a time
+               slidesToScroll: 1, // Number of slides to scroll
+               autoplay: true, // Auto-play the carousel
+               autoplaySpeed: 2000, // Auto-play speed in milliseconds
+               arrows: false, // Show navigation arrows
+           })
+        });
+    </script>
+{% endblock %}

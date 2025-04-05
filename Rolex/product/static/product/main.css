@@ -1,0 +1,136 @@
+footer{
+    background-color: seagreen;
+    width: 100%;
+    height:50px;
+    margin-top:5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.82);
+    font-style: oblique;
+}
+.ProductBlock
+{
+    border: 2px gray solid;
+    border-radius: 20px;
+    padding: 12px;
+    background-color: seagreen;
+    color:white;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.ProductBlock button{
+    margin-left: 1%;
+}
+#container{
+    display: inline-grid;
+    grid-template-columns: 300px 300px;
+    grid-column-gap: 50px;
+    grid-row-gap: 50px;
+    width:72%;
+    padding:10px;
+    margin-top: 20px;
+}
+#nav-header{
+    width: inherit;
+    height:60px;
+    background-color: #04180e;
+    backdrop-filter:contrast(45%);
+
+}
+#pag-menu{
+    margin-top: 10px;
+}
+.App-header {
+  background-color:seagreen;
+  height:150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.col-md-4{
+    margin-top: 1%;
+}
+#header1{
+    text-align: justify;
+}
+#header2{
+    text-align: justify;
+    margin-top: 30px;
+}
+#header1 p{
+    line-height: 30px;
+     font-weight: normal;
+    font-style: normal;
+}
+#header1 img{
+    border: 1px black solid;
+    box-shadow: 2px 5px 2px black;
+    margin-left: 15%;
+}
+h1:before,
+h1:after{
+    content:'\2655';
+}
+h2:before{
+    content: '\269C';
+}
+#header2 ul>li{
+    padding: 15px;
+    width: 70%;
+}
+#fig1
+{
+    width: 320px;
+    margin-left: 5%;
+    height: 220px;
+    border: grey 2px double;
+    padding:10px;
+}
+#fig1 figcaption,
+#fig2 figcaption{
+    font-style: italic;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px;
+}
+#fig2{
+    width: 320px;
+    height: 220px;
+    border: grey 2px double;
+    padding:10px;
+    margin-top: 50px;
+    margin-left: 5%;
+}
+#footer{
+    margin-top: 10px;
+    text-align: center;
+}
+#storeContainer{
+    padding: 10px;
+    margin-bottom: 40px;
+    display: inline-grid;
+    grid-template-columns: 350px 350px;
+    grid-column-gap: 10px;
+    grid-row-gap: 30px;
+}
+.stores{
+    background-color: seagreen;
+    border-radius: 10px;
+    color:wheat;
+    align-items: center;
+    font-style: oblique;
+    width: 350px;
+    text-align: center;
+}
+.stores img{
+    margin-top:10px;
+    border-radius: 10px;
+    width: 300px;
+    margin-left: 3px;
+    height: 200px;
+}

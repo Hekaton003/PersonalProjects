@@ -1,0 +1,50 @@
+{% extends "product/Base.html" %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'product/aside-1.css' %}">
+{% endblock %}
+{% block content %}
+     <h1 style="text-align: center;margin-top: 10px"> Rolex and Architecture </h1>
+            <div id='ArchitectureBlock'>
+                <div class='ABlock'>
+                    <h2>An art and a science</h2>
+                    <p>Architecture is where a wide range of disciplines converge, combining artistic vision and technical excellence. As in watchmaking, the strength of the design reflects a passion for precision, performance and aesthetics.</p>
+                </div>
+                <div class='ABlock'>
+                    <h2>Architecture and the Perpetual Arts Initiative </h2>
+                    <p>Rolex supports architecture through its Perpetual Arts Initiative, which embraces many partnerships with leading cultural institutions and artists as part of its a long-term commitment to global culture.</p>
+                </div>
+                <div class='ABlock'>
+                    <h2>International Architecture Exhibition</h2>
+                    <p>Since 2014, Rolex has served as Exclusive Partner and Official Timepiece of the International Architecture Exhibition – La Biennale di Venezia. The company’s support highlights its dedication to excellence in design and sustainability. The Biennale is open until 26 November, 2023.</p>
+                </div>
+            </div>
+            <hr style="height:3px;background-color:black"/>
+            <h1 style="text-align: center;margin-top: 10px">Rolex buildings</h1>
+            <div id='ArchitectureContainer'>
+                {% for building in objects %}
+                    <div class='buildings'>
+                        <img src='{{ building.image }}' width='500px' height='400px' alt='building'/>
+                        <h4>{{ building.title }}</h4>
+                        <p><cite>The Rolex Building by <abbr title='{{ building.description }}'></abbr>{{ building.author }}</cite></p>
+                    </div>
+                {% endfor %}
+            </div>
+             <div id="pag-menu">
+                    {% if objects.has_previous %}
+                        <a class="btn btn-outline-info mb-4" style="background-color: seagreen;color: whitesmoke" href="?page=1">First</a>
+                        <a class="btn btn-outline-info mb-4" style="background-color: seagreen;color: whitesmoke" href="?page={{ objects.previous_page_number }}">Previous</a>
+                    {% endif %}
+                    {% for num in objects.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <a class="btn btn-info mb-4" style="background-color: seagreen" href="?page={{ num }}">{{ num }}</a>
+                        {% elif num > objects.number|add:'-3' and num < objects.number|add:'3' %}
+                            <a class="btn btn-outline-info mb-4" style="background-color: seagreen;color: whitesmoke" href="?page={{ num }}">{{ num }}</a>
+                        {% endif %}
+                    {% endfor %}
+                    {% if objects.has_next %}
+                        <a class="btn btn-outline-info mb-4" style="background-color: seagreen; color: whitesmoke" href="?page={{ objects.next_page_number }}">Next</a>
+                        <a class="btn btn-outline-info mb-4" style="background-color: seagreen; color: whitesmoke" href="?page={{ objects.paginator.num_pages }}">Last</a>
+                    {% endif %}
+            </div>
+{% endblock %}

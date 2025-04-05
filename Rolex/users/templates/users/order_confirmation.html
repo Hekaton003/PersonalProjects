@@ -1,0 +1,40 @@
+{% extends "product/Base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-warning text-white">
+            <h3>Order Confirmation</h3>
+        </div>
+        <div class="card-body">
+            <h4>Order #{{ order.order_number }}</h4>
+            <div class="mt-4">
+                <h5>Order Details:</h5>
+                <ul class="list-group">
+                    {% for item in order_items %}
+                    <li class="list-group-item">
+                        <strong>Product:</strong> {{ item.product.name}}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Quantity:</strong> {{ item.quantity }}
+                    </li>
+                    {% endfor %}
+                    <li class="list-group-item">
+                        <strong>Total Price:</strong> ${{ order.price }}
+                    </li>
+                </ul>
+            </div>
+            <div class="mt-4 d-inline-flex gap-2">
+                <form class="d-inline px-3" action="{% url "order_confirmation" %}" method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-primary" type="submit">Proceed</button>
+                </form>
+                <form class="d-inline" action="{% url "cancel_order" %}" method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-danger" type="submit">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "product/Base.html" %}
+{% load static %}
+{% block extra_css %}
+      <link rel="stylesheet" href="{% static 'product/aside-1.css' %}">
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+{% endblock %}
+{% block content %}
+    <h1 style="text-align: center;margin-top: 10px;margin-bottom: 40px;">Rolex and Motor Sports</h1>
+        <div class="golf-carousel">
+            <div id='MotorSport1'>
+                <div class='MSBlock1'>
+                <h2>A shared trajectory</h2>
+                <p>Mastering the power of mechanics. Developing the precision of manual techniques. Controlling risk to determine the ideal trajectory. Rolex and motor sport have been interlinked since the 1930s, at the height of the pursuit of speed records. These ties have been continuously strengthened as the sport has evolved, in a shared quest for technical advancement. Today, Rolex partners Formula 1® as well as major endurance races, working alongside legendary figures and modern-day motor sport icons.</p>
+                </div>
+            </div>
+            <div id='MotorSport2'>
+                <div class='MSBlock1'>
+                <h2>The mechanics of progress</h2>
+                <p>The shared history between Rolex and motor sport has always been about progress. It began in the 1930s when racing driver Sir Malcolm Campbell set his greatest land speed records. On his wrist he wore an Oyster, which he exposed to the extreme conditions of motor racing.</p>
+                <p>Today, the partnerships between motor sport and Rolex have developed with a new challenge in mind, one of an energy efficiency that stretches the limits of performance even further. Doing better with less: this is the two-fold sporting and environmental challenge that racing teams and manufacturers are taking on. They all face stringent competition rules and timetables to achieve these new goals.</p>
+                <p>Since its founding, Rolex has been committed to the dynamics of progress and supports motor sport in this transformation.</p>
+                </div>
+            </div>
+            <div id='MotorSport3'>
+                <div class='MSBlock1'>
+                <h2>Rolex, at the heart of motor sport</h2>
+                <p>Rolex is a Global Partner and the Official Timepiece of Formula 1®, the premier category of single-seater racing cars, whose championship gathers the greatest teams and most talented drivers to compete in some 20 Grand Prix races around the world.</p>
+                <p>The brand is the Official Timepiece of legendary endurance races such as the Rolex 24 At DAYTONA, the 24 Hours of Le Mans and the 12 Hours of Sebring, as well as the FIA World Endurance Championship. Rolex is also a partner of the Daytona International Speedway.</p>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+{% block extra_js %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Slick Carousel JS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+        $(document).ready(function (){
+           $('.golf-carousel').slick({
+               dots:true,
+               infinite:true,
+               speed: 300,
+               slidesToShow: 1, // Number of slides to show at a time
+               slidesToScroll: 1, // Number of slides to scroll
+               autoplay: true, // Auto-play the carousel
+               autoplaySpeed: 2000, // Auto-play speed in milliseconds
+               arrows: false, // Show navigation arrows
+           })
+        });
+    </script>
+{% endblock %}

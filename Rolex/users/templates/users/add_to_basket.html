@@ -1,0 +1,36 @@
+{% extends "product/Base.html" %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "users/form.css" %}">
+{% endblock %}
+{% block content %}
+    <h1 style="text-align: center;margin-top: 10px">Add to Cart Page</h1>
+    {% if items %}
+        <form action="{% url "process_order" %}" method="post">
+          {% csrf_token %}
+          <div id="container">
+              {% for item in items %}
+                  <div class="ProductBlock">
+                    <h4>{{ item.product.name }}</h4>
+                    <img class="img-thumbnail" src="{{item.product.image.url}}" width="300px" alt="w"/>
+                    <p style="text-align: center">{{ item.product.description }}</p>
+                    <p>${{ item.product.price }}</p>
+                    <label style="text-align: center">
+                        <a href="{% url 'decrease_quantity' item.id %}" class="btn btn-sm btn-outline-light">-</a>
+                        <input style="width: 50%; border:none; border-radius: 10px; background-color: white; " value="{{item.quantity}}" min="0"
+                               max="{{ watch.quantity }}" class="d-inline inline_label text-center" disabled>
+                        <a href="{% url 'increase_quantity' item.id %}" class="btn btn-sm btn-outline-light">+</a>
+                    </label>
+                </div>
+              {% endfor %}
+          </div>
+           <div class="form-group mt-2">
+              <h4 class="label-default">Total price {{ total_price }} $</h4>
+               <br/>
+              <button class="btn btn-outline-seagreen" type="submit">Order</button>
+           </div>
+        </form>
+        {% else %}
+        <p style="text-align: center; font-size: larger">Empty Basket</p>
+    {% endif %}
+{% endblock %}

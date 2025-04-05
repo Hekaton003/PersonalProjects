@@ -1,0 +1,21 @@
+{% extends "product/Base.html" %}
+{% block content %}
+<h1 style="text-align: center;margin-top: 10px">Rolex shops</h1>
+    <div id='storeContainer'>
+        {% for store in page_obj %}
+            <div class="stores">
+                <img src="{{ store.image }}" alt="store"/>
+                <h3>{{ store.name }}</h3>
+                <p>{{ store.address }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <div id="pag-menu">
+        {% if page_obj.has_previous %}
+            <a class="btn btn-outline-info mb-4" style="background-color: seagreen;color: whitesmoke" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        {% if page_obj.has_next %}
+            <a class="btn btn-outline-info mb-4" style="background-color: seagreen; color: whitesmoke" href="?page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "product/Base.html" %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'product/aside.css' %}">
+{% endblock %}
+{% block content %}
+     <h1  style="text-align: center;margin-top: 10px">Rolex and Tennis</h1>
+            <div id='Tennis1'>
+                <div class='TennisBlock'>
+                    <h2>A shared movement</h2>
+                    <p>For more than 40 years, Rolex has enjoyed a special relationship with tennis, a sport with global appeal, whose history continues to be written with new challenges, new stories and new champions. Rolex and tennis share a set of strong founding values: the perpetual quest for excellence, the desire for technical precision, unwavering effort, a respect for tradition and pushing beyond personal limits.</p>
+                </div>
+                <figure>
+                    <img src="https://media.rolex.com/image/upload/q_auto:best/f_auto/c_limit,w_3840/v1724140972/rolexcom/rolex-and-sports/tennis/navigation/rolex-and-sports-tennis-us-open-navigation-uso23jj_0907-v02" alt="tennis" width="100%">
+                    <figcaption style="font-style: italic; text-align: center">Rolex and Tennis - US Open</figcaption>
+                </figure>
+                <div class='TennisBlock'>
+                    <h2>A major partner in tennis</h2>
+                    <p>Rolex and tennis first came together when the brand partnered with The Championships, Wimbledon, in 1978 as tennis was experiencing a powerful transformation.<br/>
+                    The brand gradually forged links with all of the sport’s elite competitions. Rolex now partners the four Grand Slam® tournaments, all the major events in the men’s and women’s game and the leading international team contests.</p>
+                </div>
+                <div class='TennisBlock'>
+                    <h2>Rolex supports past and present talent</h2>
+                    <p>Rolex helps to foster the development of tennis by strengthening its commitment to young talent and the most iconic athletes whose exceptional feats have brought glamour and greatness to the sport.</p>
+                </div>
+            </div>
+{% endblock %}

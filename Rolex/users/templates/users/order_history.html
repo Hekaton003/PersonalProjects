@@ -1,0 +1,83 @@
+{% extends 'product/Base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-5" style="text-align: center;margin-top: 10px">Your Order History</h1>
+
+    {% if not orders %}
+        <div class="alert alert-info">You haven't completed any orders yet.</div>
+    {% else %}
+        <div class="accordion" id="ordersAccordion">
+            {% for order in orders %}
+            <div class="accordion-item mb-3 border rounded-3">
+                <h3 class="display-6 px-5 mt-2 text-center">Order-{{ order.order_number }}</h3>
+                <div class="table-responsive mb-3">
+                    <table class="table">
+                        <thead>
+                         <tr>
+                             <th>Product</th>
+                             <th class="text-end">Price</th>
+                             <th class="text-center">Qty</th>
+                             <th class="text-end">Subtotal</th>
+                         </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in order.orderitems.all %}
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        {% if item.product.image %}
+                                            <img src="{{ item.product.image.url }}"
+                                                 alt="{{ item.product.name }}"
+                                                 class="img-thumbnail me-3"
+                                                 style="width: 60px; height: 60px; object-fit: cover;">
+                                        {% endif %}
+                                        <div class="px-4">
+                                            <h6 class="mb-0">{{ item.product.name }}</h6>
+                                            <small class="text-muted">Des: {{ item.product.description }}</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-end">${{ item.product.price }}</td>
+                                <td class="text-center">{{ item.quantity }}</td>
+                                <td class="text-end">${{ item.subtotal|floatformat:2}}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                        <!-- Order Summary -->
+                <div class="row justify-content-end">
+                    <div class="col-md-5">
+                        <div class="card border-0 bg-light">
+                            <div class="card-body">
+                                <h5 class="card-title">Order Summary</h5>
+                                <hr/>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Subtotal:</span>
+                                    <span>${{ order.price|floatformat:2 }}</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Shipping:</span>
+                                    <span>${{ order.shipping_cost|floatformat:2 }}</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Tax:</span>
+                                    <span>${{ order.tax|floatformat:2 }}</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between fw-bold">
+                                    <span>Total:</span>
+                                    <span>${{ order.total|floatformat:2}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

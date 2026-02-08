@@ -2,7 +2,7 @@
 
 This repository contains several personal projects I've developed, showcasing my skills in **frontend**, **backend**, and **machine learning**.  
 
-## 🛠️ Technologies Used  
+## Technologies Used  
 
 ### **Frontend**  
 - HTML, CSS, JavaScript  
@@ -15,8 +15,9 @@ This repository contains several personal projects I've developed, showcasing my
 - .Net
 
 ### **Machine Learning & Data Science**  
-- Python (NumPy, Pandas, Scikit-learn)  
-- TensorFlow (if applicable)  
-- Jupyter Notebooks  
+- NumPy, Pandas, Scikit-learn 
+- TensorFlow, PyTorch
 
-
+## Other projects
+- [Deep Reinforcement Learning](https://github.com/Hekaton003/Agetno_Proekt)
+- [Topic Modeling and Trend Detection in Large Text Corpora](https://github.com/Hekaton003/VNP-proektna) 

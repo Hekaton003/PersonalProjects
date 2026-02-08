@@ -19,5 +19,5 @@ This repository contains several personal projects I've developed, showcasing my
 - TensorFlow, PyTorch
 
 ## Other projects
-- [Deep Reinforcement Learning] (https://github.com/Hekaton003/Agetno_Proekt)
+- [Deep Reinforcement Learning](https://github.com/Hekaton003/Agetno_Proekt)
 - [Topic Modeling and Trend Detection in Large Text Corpora](https://github.com/Hekaton003/VNP-proektna) 

@@ -20,4 +20,5 @@ This repository contains several personal projects I've developed, showcasing my
 
 ## Other projects
 - [Deep Reinforcement Learning](https://github.com/Hekaton003/Agetno_Proekt)
-- [Topic Modeling and Trend Detection in Large Text Corpora](https://github.com/Hekaton003/VNP-proektna) 
+- [Topic Modeling and Trend Detection in Large Text Corpora](https://github.com/Hekaton003/VNP-proektna)
+- [A Comparative Evaluation of Reasoning and Translation Capabilities in Large Language Models](https://github.com/Hekaton003/NLP_Project)

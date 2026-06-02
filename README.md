@@ -22,3 +22,4 @@ This repository contains several personal projects I've developed, showcasing my
 - [Deep Reinforcement Learning](https://github.com/Hekaton003/Agetno_Proekt)
 - [Topic Modeling and Trend Detection in Large Text Corpora](https://github.com/Hekaton003/VNP-proektna)
 - [A Comparative Evaluation of Reasoning and Translation Capabilities in Large Language Models](https://github.com/Hekaton003/NLP_Project)
+- [Real-Time Air Quality Forecasting in Skopje and Bitola using Chronos-2](https://github.com/p-nikola/realtime-air-quality-forecasting)
